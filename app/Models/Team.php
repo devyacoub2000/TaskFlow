@@ -30,4 +30,14 @@ class Team extends Model
             'path' => 'images/default.jpg'
         ])->where('type', 'main');
     }
+    public function getImgPathAttribute()
+    {
+
+        $src = 'https://via.placeholder.com/100x80';
+        if ($this->image) {
+            $src = asset('images/' . $this->image->path);
+        }
+
+        return $src;
+    }
 }

@@ -167,7 +167,7 @@
                                 if(Auth::user()->image) {
                                 $src= asset('images/'.Auth::user()->image->path);
                                 }else {
-                                $src = 'https://ui-avatars.com/api/?background=random&name='.Auth::user()->name';
+                                $src = 'https://ui-avatars.com/api/?background=random&name='.Auth::user()->name;
                                 }
                                 @endphp
                                 <img class="img-profile rounded-circle"
