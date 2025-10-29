@@ -96,7 +96,19 @@
         </div>
     </div>
 
-
+    <!-- Users Card -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">Team Members</div>
+            <div class="card-body">
+                @forelse($team->users as $user)
+                <div class="user-item">{{ $user->name }}</div>
+                @empty
+                <p>No users in this team.</p>
+                @endforelse
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection
