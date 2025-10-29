@@ -59,9 +59,10 @@ class TeamController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Team $team)
     {
-        //
+        $team->load(['users', 'tasks']); // تحميل العلاقات المرتبطة 
+        return view('admin.team.show', compact('team'));
     }
 
     /**

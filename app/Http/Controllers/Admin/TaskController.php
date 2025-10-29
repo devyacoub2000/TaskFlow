@@ -13,11 +13,38 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Task::latest('id')->paginate();
-        return view('admin.task.index', compact('data'));
+        $query = Task::query();
+
+        // فلترة حسب الفريق
+        if ($request->filled('team_id')) {
+            $query->where('team_id', $request->team_id);
+        }
+
+        // فلترة حسب الحالة
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        // فلترة حسب الأولوية
+        if ($request->filled('priority')) {
+            $query->where('priority', $request->priority);
+        }
+
+        // فلترة حسب المستخدم المسؤول
+        if ($request->filled('assigned_to')) {
+            $query->where('assigned_to', $request->assigned_to);
+        }
+
+        $data = $query->latest('id')->paginate(10);
+
+        $teams = Team::select('id', 'name')->get();
+        $users = User::select('id', 'name')->get();
+
+        return view('admin.task.index', compact('data', 'teams', 'users'));
     }
+
 
     /**
      * Show the form for creating a new resource.

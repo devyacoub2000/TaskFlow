@@ -42,6 +42,11 @@
             <a href="{{route('admin.team.edit', $item->id)}}"
                 class="btn btn-info"> <i class="fas fa-edit"></i>
             </a>
+
+            <a href="{{route('admin.team.show', $item->id)}}"
+                class="btn btn-primary"> <i class="fas fa-eye"></i>
+            </a>
+
             <form class="d-inline"
                 action="{{route('admin.team.destroy', $item->id)}}" enctype="multipart/form-data" method="POST">
                 @csrf

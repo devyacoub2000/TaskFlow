@@ -23,4 +23,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth', 'is_admin')->group(fu
     // Task Controller 
 
     Route::resource('task', TaskController::class);
+
+    // Profile Page
+
+    Route::get('profile', [AdminController::class, 'profile'])->name('profile');
+    Route::put('profile_data', [AdminController::class, 'profile_data'])->name('profile_data');
+    Route::post('check-password', [AdminController::class, 'check_password'])
+    ->name('check_password');
 });
